@@ -1,28 +1,27 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import InboxScreen from './screens/InboxScreen.tsx';
+import NotificationDetailScreen from './screens/NotificationDetailScreen.tsx';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+export type RootStackParamList = {
+  Inbox: undefined;
+  NotificationDetail: { id: string };
+};
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
+export default function App() {
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Inbox">
+        <Stack.Screen name="Inbox" component={InboxScreen} />
+        <Stack.Screen
+          name="NotificationDetail"
+          component={NotificationDetailScreen}
+          options={{ title: 'Detalle' }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
-export default App;
