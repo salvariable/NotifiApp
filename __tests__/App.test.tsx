@@ -2,14 +2,13 @@ import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react-native';
 import App from '../App';
 import { useNotificationStore } from '../store/notificationStore';
-import { NotificationType } from '../models/notification';
 
-describe('App Navigation', () => {
+describe('App Navigation Integration', () => {
   beforeEach(() => {
     useNotificationStore.setState({ notifications: [] });
   });
 
-  it('renders Inbox screen and navigates to Detail', async () => {
+  it('renders inbox, adds typed notification, navigates to detail', async () => {
     const { getByText, queryByText } = render(<App />);
 
     expect(getByText('Agregar notificación mock')).toBeTruthy();
@@ -17,14 +16,16 @@ describe('App Navigation', () => {
     fireEvent.press(getByText('Agregar notificación mock'));
 
     await waitFor(() => {
-      expect(getByText('Mock Notification')).toBeTruthy();
+      expect(
+        queryByText('⚠️') || queryByText('❌') || queryByText('✅') || queryByText('🛠') || queryByText('ℹ️')
+      ).toBeTruthy();
     });
 
-    fireEvent.press(getByText('Mock Notification'));
+    const notificationTitle = useNotificationStore.getState().notifications[0]?.title;
+    fireEvent.press(getByText(notificationTitle));
 
     await waitFor(() => {
-      expect(getByText('Mock Notification')).toBeTruthy();
-      expect(getByText('Esto es una notificación simulada')).toBeTruthy();
+      expect(getByText(notificationTitle)).toBeTruthy();
     });
   });
 });

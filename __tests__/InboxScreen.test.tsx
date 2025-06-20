@@ -1,9 +1,10 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react-native';
+import { render, fireEvent, waitFor } from '@testing-library/react-native';
 import InboxScreen from '../screens/InboxScreen';
 import { useNotificationStore } from '../store/notificationStore';
+import { NotificationType } from '../models/notification';
+import { getColorForType } from '../utils/getColorForType';
 
-// Creamos el mock antes del test
 const mockNavigate = jest.fn();
 
 jest.mock('@react-navigation/native', () => {
@@ -22,13 +23,31 @@ describe('InboxScreen Navigation', () => {
         useNotificationStore.setState({ notifications: [] });
     });
 
+    it('renders design according to notification type', async () => {
+        useNotificationStore.getState().addNotification({
+            id: 'icon-test',
+            title: 'Tipo Success',
+            description: 'Test de ícono',
+            createdAt: new Date(),
+            type: NotificationType.Success,
+            read: false,
+        });
+
+        const { getByText, getByTestId } = render(<InboxScreen />);
+
+        await waitFor(() => {
+            expect(getByText('✅')).toBeTruthy();
+            expect(getByTestId('color-bar-icon-test').props.style.backgroundColor).toBe(getColorForType(NotificationType.Success));
+        });
+    });
+
     it('navigates to detail screen with correct ID when notification is pressed', () => {
         useNotificationStore.getState().addNotification({
             id: 'abc123',
             title: 'Test Notification',
             description: 'Contenido de prueba',
             createdAt: new Date(),
-            type: 'info',
+            type: NotificationType.Info,
             read: false,
         });
 
