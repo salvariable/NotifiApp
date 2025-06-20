@@ -46,4 +46,33 @@ describe('Notification Store', () => {
 
         expect(getUnreadCount()).toBe(1);
     });
+
+    it('markAsRead only modifies the notification with matching id', () => {
+        const now = new Date();
+        const notif1 = {
+            id: '1',
+            title: 'First',
+            description: '',
+            createdAt: now,
+            read: false,
+            type: NotificationType.Info,
+        };
+        const notif2 = {
+            id: '2',
+            title: 'Second',
+            description: '',
+            createdAt: now,
+            read: false,
+            type: NotificationType.Info,
+        };
+
+        useNotificationStore.setState({ notifications: [notif1, notif2] });
+
+        useNotificationStore.getState().markAsRead('1');
+
+        const final = useNotificationStore.getState().notifications;
+
+        expect(final.find(n => n.id === '1')?.read).toBe(true);
+        expect(final.find(n => n.id === '2')?.read).toBe(false);
+    });
 });

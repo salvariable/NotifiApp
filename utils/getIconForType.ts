@@ -11,6 +11,7 @@ export function getIconForType(type: NotificationType): string {
         case NotificationType.System:
             return '🛠';
         case NotificationType.Info:
+            return 'ℹ️';
         default:
             return 'ℹ️';
     }

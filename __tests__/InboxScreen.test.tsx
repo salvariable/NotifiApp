@@ -4,23 +4,47 @@ import InboxScreen from '../screens/InboxScreen';
 import { useNotificationStore } from '../store/notificationStore';
 import { NotificationType } from '../models/notification';
 import { getColorForType } from '../utils/getColorForType';
-
-const mockNavigate = jest.fn();
-
-jest.mock('@react-navigation/native', () => {
-    const actualNav = jest.requireActual('@react-navigation/native');
-    return {
-        ...actualNav,
-        useNavigation: () => ({
-            navigate: mockNavigate,
-        }),
-    };
-});
+import { mockNavigate, mockSetOptions } from '../jest.setup';
 
 describe('InboxScreen Navigation', () => {
     beforeEach(() => {
         mockNavigate.mockClear();
         useNotificationStore.setState({ notifications: [] });
+    });
+
+    it('renders notification title with bold font and dot when unread', () => {
+        useNotificationStore.setState({
+            notifications: [{
+                id: 'unread-id',
+                title: 'No leída',
+                description: 'desc',
+                createdAt: new Date(),
+                read: false,
+                type: NotificationType.Info,
+            }],
+        });
+
+        const { getByText, getByTestId } = render(<InboxScreen />);
+        const title = getByText('No leída');
+        expect(title.props.style).toMatchObject({ fontWeight: 'bold' });
+        expect(getByTestId('dot-unread-id')).toBeTruthy();
+    });
+
+    it('renders notification title with normal font when read', () => {
+        useNotificationStore.setState({
+            notifications: [{
+                id: 'read-id',
+                title: 'Leída',
+                description: 'desc',
+                createdAt: new Date(),
+                read: true,
+                type: NotificationType.Info,
+            }],
+        });
+
+        const { getByText } = render(<InboxScreen />);
+        const title = getByText('Leída');
+        expect(title.props.style).toMatchObject({ fontWeight: 'normal' });
     });
 
     it('renders design according to notification type', async () => {
@@ -39,6 +63,33 @@ describe('InboxScreen Navigation', () => {
             expect(getByText('✅')).toBeTruthy();
             expect(getByTestId('color-bar-icon-test').props.style.backgroundColor).toBe(getColorForType(NotificationType.Success));
         });
+    });
+
+    it('sets headerRight with unread badge when there are unread notifications', () => {
+        useNotificationStore.setState({
+            notifications: [
+                {
+                    id: '1',
+                    title: 'test',
+                    description: 'test',
+                    createdAt: new Date(),
+                    read: false,
+                    type: NotificationType.Info,
+                },
+            ],
+        });
+
+        render(<InboxScreen />);
+
+        expect(mockSetOptions).toHaveBeenCalledWith(
+            expect.objectContaining({
+                headerRight: expect.any(Function),
+            })
+        );
+
+        const headerRightFn = mockSetOptions.mock.calls[0][0].headerRight;
+        const headerElement = headerRightFn();
+        expect(headerElement.props.count).toBe(1);
     });
 
     it('navigates to detail screen with correct ID when notification is pressed', () => {

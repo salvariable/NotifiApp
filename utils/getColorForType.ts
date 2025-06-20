@@ -11,6 +11,7 @@ export function getColorForType(type: NotificationType): string {
         case NotificationType.System:
             return '#94a3b8';
         case NotificationType.Info:
+            return '#60a5fa';
         default:
             return '#60a5fa';
     }

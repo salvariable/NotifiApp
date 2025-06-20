@@ -1,0 +1,5 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "🚨 Ejecutando tests con cobertura mínima del 100%..."
+yarn test --coverage || (echo "❌ Tests fallaron." && exit 1)

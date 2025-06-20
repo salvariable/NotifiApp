@@ -1,16 +1,15 @@
-// screens/InboxScreen.tsx
-
 import React, { useEffect } from 'react';
 import { View, Text, Button, FlatList, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useNotificationStore } from '../store/notificationStore';
-import { Notification, NotificationType } from '../models/notification';
+import { Notification } from '../models/notification';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../App';
 import { getIconForType } from '../utils/getIconForType';
 import { getColorForType } from '../utils/getColorForType';
 import { getRandomNotificationType } from '../utils/getRandomNotificationType';
 import Animated, { FadeInDown, ZoomIn } from 'react-native-reanimated';
+import UnreadBadge from '../components/UnreadBadge';
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Inbox'>;
 
@@ -22,18 +21,7 @@ export default function InboxScreen() {
 
     useEffect(() => {
         navigation.setOptions({
-            headerRight: () =>
-                unreadCount > 0 ? (
-                    <Animated.View entering={ZoomIn.duration(300)} style={{
-                        backgroundColor: '#2563eb',
-                        borderRadius: 12,
-                        paddingHorizontal: 8,
-                        paddingVertical: 4,
-                        marginRight: 8,
-                    }}>
-                        <Text testID='unread-badge-count' style={{ color: 'white', fontWeight: 'bold' }}>{unreadCount}</Text>
-                    </Animated.View>
-                ) : null,
+            headerRight: () => <UnreadBadge count={unreadCount} />,
         });
     }, [unreadCount]);
 
@@ -70,7 +58,7 @@ export default function InboxScreen() {
                             {item.title}
                         </Text>
                         {!item.read && (
-                            <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: '#2563eb' }} />
+                            <View testID={`dot-${item.id}`} style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: '#2563eb' }} />
                         )}
                     </View>
                     <Text>{item.description}</Text>
