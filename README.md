@@ -1,93 +1,113 @@
 # 📬 NotifApp
 
-Aplicación demo desarrollada con **React Native** que muestra un sistema de notificaciones animadas, con navegación, persistencia en memoria y cobertura de tests al 100%.
+A demo app built with **React Native** showcasing an animated notification system, complete with navigation, in-memory persistence, and **100% test coverage**.
 
-## 🧩 Tecnologías principales
+## 🧩 Main Technologies
 
 - **React Native**
 - **TypeScript**
-- **Zustand** para el store de notificaciones
+- **Zustand** for notification state management
 - **React Navigation**
-- **React Native Reanimated** para animaciones
-- **Jest + Testing Library** para tests
-- **Husky** para hooks de Git
-- **100% de cobertura de tests** garantizada
+- **React Native Reanimated** for animations
+- **Jest + Testing Library** for unit testing
+- **Husky** for Git hooks
+- **100% test coverage** guaranteed
 
 ---
 
-## 🔍 Funcionalidades
+## 🔍 Features
 
-- Listado de notificaciones tipo Inbox
-- Notificaciones con ícono y color según tipo: Info, Éxito, Error, Advertencia, Sistema
-- Marcar como leídas
-- Navegación al detalle (placeholder)
-- Badge animado en el header si hay notificaciones sin leer
-- Botón para generar notificaciones mock
-- UI responsiva y limpia
-- Animaciones suaves en ingreso de notificación y en el badge
+- Inbox-style notification list
+- Notifications with icon and color based on type: Info, Success, Error, Warning, System
+- Mark notifications as read
+- Navigation to detail screen (placeholder)
+- Animated badge on header when unread notifications exist
+- Button to generate mock notifications
+- Responsive and clean UI
+- Smooth animations on notification entry and badge updates
 
 ---
 
 ## 🧪 Testing
 
-Todos los componentes, utilidades y store están cubiertos con tests unitarios.
+Every component, utility, and store is covered with unit tests.
 
 ```bash
 yarn test --coverage
 ```
 
-El proyecto incluye:
-
-- Cobertura al **100%** de líneas, branches y funciones
-- Hook de **pre-commit** (Husky) que bloquea commits si fallan los tests
+- 100% **line**, **branch**, and **function** coverage
+- **Pre-commit hook** via Husky blocks commits if tests fail
 
 ---
 
-## 🚀 Scripts principales
+## 🚀 Available Scripts
 
 ```bash
-yarn start           # Iniciar el servidor de desarrollo
-yarn test            # Ejecutar tests unitarios
-yarn test --coverage # Ejecutar tests con reporte de cobertura
+yarn start           # Start Metro dev server
+yarn test            # Run unit tests
+yarn test --coverage # Run tests with coverage report
 ```
 
 ---
 
-## 📁 Estructura del proyecto
+## 📁 Project Structure
 
 ```
 NotifApp/
-├── components/        # Componentes reutilizables
-├── screens/           # Vistas principales (Inbox)
-├── store/             # Zustand store
-├── utils/             # Utilidades
-├── models/            # Tipos y enums
-├── __tests__/         # Tests unitarios
-└── App.tsx            # Punto de entrada
+├── components/        # Reusable UI components
+├── screens/           # Main views (e.g. Inbox)
+├── store/             # Zustand state management
+├── utils/             # Utilities
+├── models/            # Types and enums
+├── __tests__/         # Unit tests
+└── App.tsx            # Entry point
 ```
 
 ---
 
-## 🧠 Aprendizajes y propósito
+## 🧠 Purpose & Learnings
 
-Este proyecto fue construido como un challenge técnico para dominar:
+This project was built as a technical challenge to master:
 
-- Testing en React Native con cobertura completa
-- Animaciones en UI con Reanimated
-- Manejo del estado global con Zustand
-- Integración de herramientas de calidad (Husky, coverage threshold)
+- React Native testing with full coverage
+- UI animations with Reanimated
+- Global state management with Zustand
+- Quality tooling (Husky, test thresholds, CI compatibility)
 
 ---
 
-## ⚙️ Requisitos
+## ⚙️ Requirements
+
+To run the app locally, make sure you have:
 
 - Node.js >= 18
 - Yarn >= 1.22
 - React Native CLI >= 0.80
+- iOS/Android environment set up via [React Native docs](https://reactnative.dev/docs/environment-setup)
 
 ---
 
-## 👤 Autor
+## ▶️ Getting Started
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/your-username/NotifApp.git
+cd NotifApp
+yarn install
+```
+
+Then run the app:
+
+```bash
+npx react-native run-ios      # for iOS
+npx react-native run-android  # for Android
+```
+
+---
+
+## 👤 Author
 
 **Salvador Bolaños**  
-Desarrollador React Native con enfoque en calidad, diseño y producto.
+React Native Developer focused on code quality, UI design, and product thinking.
