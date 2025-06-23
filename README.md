@@ -1,97 +1,93 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 📬 NotifApp
 
-# Getting Started
+Aplicación demo desarrollada con **React Native** que muestra un sistema de notificaciones animadas, con navegación, persistencia en memoria y cobertura de tests al 100%.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## 🧩 Tecnologías principales
 
-## Step 1: Start Metro
+- **React Native**
+- **TypeScript**
+- **Zustand** para el store de notificaciones
+- **React Navigation**
+- **React Native Reanimated** para animaciones
+- **Jest + Testing Library** para tests
+- **Husky** para hooks de Git
+- **100% de cobertura de tests** garantizada
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+---
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## 🔍 Funcionalidades
 
-```sh
-# Using npm
-npm start
+- Listado de notificaciones tipo Inbox
+- Notificaciones con ícono y color según tipo: Info, Éxito, Error, Advertencia, Sistema
+- Marcar como leídas
+- Navegación al detalle (placeholder)
+- Badge animado en el header si hay notificaciones sin leer
+- Botón para generar notificaciones mock
+- UI responsiva y limpia
+- Animaciones suaves en ingreso de notificación y en el badge
 
-# OR using Yarn
-yarn start
+---
+
+## 🧪 Testing
+
+Todos los componentes, utilidades y store están cubiertos con tests unitarios.
+
+```bash
+yarn test --coverage
 ```
 
-## Step 2: Build and run your app
+El proyecto incluye:
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+- Cobertura al **100%** de líneas, branches y funciones
+- Hook de **pre-commit** (Husky) que bloquea commits si fallan los tests
 
-### Android
+---
 
-```sh
-# Using npm
-npm run android
+## 🚀 Scripts principales
 
-# OR using Yarn
-yarn android
+```bash
+yarn start           # Iniciar el servidor de desarrollo
+yarn test            # Ejecutar tests unitarios
+yarn test --coverage # Ejecutar tests con reporte de cobertura
 ```
 
-### iOS
+---
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+## 📁 Estructura del proyecto
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+```
+NotifApp/
+├── components/        # Componentes reutilizables
+├── screens/           # Vistas principales (Inbox)
+├── store/             # Zustand store
+├── utils/             # Utilidades
+├── models/            # Tipos y enums
+├── __tests__/         # Tests unitarios
+└── App.tsx            # Punto de entrada
 ```
 
-Then, and every time you update your native dependencies, run:
+---
 
-```sh
-bundle exec pod install
-```
+## 🧠 Aprendizajes y propósito
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+Este proyecto fue construido como un challenge técnico para dominar:
 
-```sh
-# Using npm
-npm run ios
+- Testing en React Native con cobertura completa
+- Animaciones en UI con Reanimated
+- Manejo del estado global con Zustand
+- Integración de herramientas de calidad (Husky, coverage threshold)
 
-# OR using Yarn
-yarn ios
-```
+---
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## ⚙️ Requisitos
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+- Node.js >= 18
+- Yarn >= 1.22
+- React Native CLI >= 0.80
 
-## Step 3: Modify your app
+---
 
-Now that you have successfully run the app, let's make changes!
+## 👤 Autor
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+**Salvador Bolaños**  
+Desarrollador React Native con enfoque en calidad, diseño y producto.
